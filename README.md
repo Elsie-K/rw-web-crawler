@@ -14,17 +14,6 @@ Starting from a seed URL, the crawler:
 
 Results are saved to `rw_sites.txt`.
 
-## The assignment, and what is actually possible
-
-The task asked for four things: the number of viewers of a site, their region, the time they spend viewing, and all `.rw` websites on the internet. Three of these cannot be obtained by crawling:
-
-- **Number of viewers**, **viewer region**, and **time spent viewing** are private analytics. Only the site owner can see them, through tools like Google Analytics or server logs. They are not part of the public page, so no crawler can read them from the outside. Third-party services such as SimilarWeb publish *estimates*, but those are estimates, not actual figures.
-
-What the crawler does instead, using only publicly available information:
-
-- **Server region** (not visitor region): looks up where each site's server is hosted, via IP geolocation
-- **Response time** (not time spent viewing): measures how fast each page responds
-
 ## Built with
 
 - **Python**
