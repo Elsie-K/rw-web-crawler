@@ -49,6 +49,6 @@ Enter a starting URL when prompted (for example `https://www.gov.rw`). The crawl
 
 ## How it avoids problems
 
-- A page limit (`max_pages = 30`) stops it from crawling indefinitely
+- A page limit (`max_pages = 50`) stops it from crawling indefinitely
 - A `visited` set ensures no page is crawled twice, preventing infinite loops
 - Each request is wrapped in `try/except`, so a site that is down or blocks the crawler is skipped rather than crashing the run
