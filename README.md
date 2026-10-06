@@ -14,6 +14,29 @@ Starting from a seed URL, the crawler:
 
 Results are saved to `rw_sites.txt`.
 
+## The assignment, and why parts of it cannot be done by crawling
+
+The task asked for four things: the number of viewers of a website, their region, the time they spend viewing, and all `.rw` websites on the internet.
+
+### Viewer count, viewer region, and time spent viewing | not possible by crawling
+
+These three are private analytics. They exist only in the website owner's own tools, such as Google Analytics, or in the server's logs. They are never part of the public page that a crawler downloads, so no crawler can read them from the outside, no matter how it is built. A crawler only sees what the site sends to the public: the HTML, the links, and the text.
+
+Third-party services such as SimilarWeb publish traffic *estimates*, but those are modelled guesses from their own sample data, not the site's actual figures, and would have to be clearly labelled as estimates.
+
+What the crawler does instead, using only publicly available information:
+
+- **Server region** (not visitor region): looks up where each site's server is hosted, via IP geolocation
+- **Response time** (not time spent viewing): measures how fast each page responds
+
+These are the honest, measurable versions of what was asked. Note the distinction: server location is where the site is hosted, which is not the same as where its visitors are; response time is how fast the page replies, which is not the same as how long a visitor stays.
+
+### Finding all `.rw` websites | only partly possible by crawling
+
+Crawling finds `.rw` sites that are *linked* from the pages it visits, so it returns a sample, not the complete set. A domain that nothing links to is never reached by a crawler, so crawling alone can never guarantee *every* `.rw` site.
+
+To enumerate *every* registered `.rw` domain, the correct source is RICTA, the registry that manages the `.rw` country-code domain, queried through its official RDAP/WHOIS service (also done in code). That is the authoritative database of registered `.rw` names. This crawler demonstrates the discovery method; integrating RICTA would give the complete list.
+
 ## Built with
 
 - **Python**
@@ -41,3 +64,7 @@ Enter a starting URL when prompted (for example `https://www.gov.rw`). The crawl
 - A page limit (`max_pages = 50`) stops it from crawling indefinitely
 - A `visited` set ensures no page is crawled twice, preventing infinite loops
 - Each request is wrapped in `try/except`, so a site that is down or blocks the crawler is skipped rather than crashing the run
+
+## Author
+
+Elsie Irakoze Karangwa
