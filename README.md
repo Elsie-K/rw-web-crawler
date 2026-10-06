@@ -25,10 +25,6 @@ What the crawler does instead, using only publicly available information:
 - **Server region** (not visitor region): looks up where each site's server is hosted, via IP geolocation
 - **Response time** (not time spent viewing): measures how fast each page responds
 
-### Finding all `.rw` websites
-
-Crawling finds `.rw` sites that are *linked* from the pages it visits, so it returns a sample, not the complete set. A domain that nothing links to is never reached by a crawler. To enumerate *every* registered `.rw` domain, the correct source is RICTA, the registry that manages the `.rw` country-code domain, through its official RDAP/WHOIS lookup. Integrating RICTA is the intended next step for complete coverage.
-
 ## Built with
 
 - **Python**
